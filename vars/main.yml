@@ -1,0 +1,7 @@
+---
+# vars file for /home/asidhu/ansible/roles/test1
+#[all:vars]
+#[vars]
+# these defaults can be overridden for any group in the [group:vars] section
+#ansible_connection=network_cli
+# ansible_user=ansible

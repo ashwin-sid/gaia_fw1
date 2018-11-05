@@ -1,0 +1,23 @@
+---
+
+- name: set clish
+  cli_command: command=clish
+
+- name: set pager
+  cli_command: command='set clienv rows 0'
+
+- name: Get hostname 
+  cli_command: command='show hostname'
+  register: r0
+
+- name: SHOW CONFIG
+  cli_command: command='show configuration'
+         #command='show ipconfiguration'
+  register: result1
+
+- name: create dir
+  local_action: file  path=../BACKUP/{{ r0.stdout }} state=directory
+
+- name: Store Backup
+  local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest=../BACKUP/{{ r0.stdout }}/{{ hostvars['localhost']['foo'].stdout }}.txt
+

@@ -1,0 +1,25 @@
+---
+#This Playbook will take a backup of "show configuration" gaia command. The out put will be stored to directory named BACKUP, one level up to where the playbook is run from 
+
+
+ - hosts: localhost
+   tasks:
+    - command: /bin/echo "{{ lookup('pipe','date +%Y-%m-%d_%H-%M') }}"
+      register: foo
+
+    - file:
+        #path: SHOW/{{ hostvars['localhost']['foo'].stdout }}
+        path: ../BACKUP
+        state: directory
+
+## Change the 'hosts' variable to what you have defined in inventory file.
+## You can change 'serial' to higher than 1. 'Serial' is the batch size 
+ - hosts: ckp
+   serial: 1
+#################### DO NOT CHANGE AYTHING BELOW THIS LINE ######################
+   gather_facts: no
+   tasks:
+     - name: BACKUP
+       import_role:
+         name: gaia_fw1
+         tasks_from: backup

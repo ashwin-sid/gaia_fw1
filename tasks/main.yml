@@ -1,0 +1,7 @@
+---
+#tasts 
+#serial: 10
+#gather_facts: no
+
+- include: setvar.yml
+- include: backup.yml

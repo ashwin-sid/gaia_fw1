@@ -1,0 +1,15 @@
+---
+
+- name: localhost
+  local_action: command /bin/echo "{{ lookup('pipe','date +%Y-%m-%d_%H-%M') }}"
+  register: foo
+  tags: lola
+
+- name: debug12
+  local_action: debug var=foo
+  tags: lola
+
+- name: dir 
+  local_action: file path=../BACKUP/{{ hostvars['localhost']['foo'].stdout }} state=directory
+  tags: lola
+
