@@ -21,7 +21,7 @@
 
      - name: SHOW COMMAND
        import_role:
-         name: gaia_fw1
+         name: ashwin_sid.gaia_fw1
          tasks_from: showclish
        vars:
 ##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
