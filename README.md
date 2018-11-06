@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Using this role you can give clish commands to multiple Checkpoint Gaia firewalls. 
+Using this role you can issue clish commands to multiple Checkpoint Gaia firewalls in your estate. 
 
 Requirements
 ------------
