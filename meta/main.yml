@@ -18,9 +18,9 @@ galaxy_info:
 
   galaxy_tags:
   - networking
-  - Firewall
-  - Checkpoint
-  - Gaia
+  - firewall
+  - checkpoint
+  - gaia
   - sshd
   - clish
   - fw1
