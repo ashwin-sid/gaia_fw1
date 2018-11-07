@@ -24,5 +24,6 @@ galaxy_info:
   - sshd
   - clish
   - fw1
+  - security
 
 dependencies: []
