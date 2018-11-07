@@ -30,6 +30,8 @@ Example Playbook
 ----------------
 
 Sample Playbooks are included in folder 'Sample-playbook'. Please visit my blog for further examples and more detailed implementation: - 
+Please Visit - "http://ash-sidhu.blog/2018/11/07/using-ansible-for-automating-tasks-on-checkpoin t-firewall" 
+for more detailed implementation procedure.
 
 License
 -------
