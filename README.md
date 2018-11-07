@@ -1,41 +1,42 @@
 Role Name
 =========
 
-Using this role you can issue clish commands to multiple Checkpoint Gaia firewalls in your estate. 
+Using this role you can easily automate essential tasks for your Checkpoint Gaia Firewalls. You can do the following by using this role: -
+•	Take clish config back-ups ( show configuration )
+•	Run essential show commands on all your gateways from single playbook.eg. 
+        o	Show route 
+        o	Show asset all 
+        o	Show interfaces 
+        o	Show ospf , etc… 
+•	Issue configure commands to all your gateways from single playbook. 
 
 Requirements
 ------------
 
 The requirements are as follows:- 
-Direct connection to the checkpoint firewalls (it does not support jump box) 
-
-
+•	Linux server. The role has been tested with RHEL 7+ and Ubuntu, but it should work with other flavours as well. 
+•	Ansible 2.5 and above running on the Linux server. 
+•	Direct connection to the checkpoint firewalls (at the moment the role does not support jump box) . 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The Role has the following defaults:- (but all of these can be changed) 
+•	Username to login to the firewall is 'admin', this can be changed per firewall in the inventory file.
+•	ssh port is 22, again if you are using a custom port this can be changed in the inventory file. 
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Sample Playbooks are included in folder 'Sample-playbook'. Please visit my blog for further examples and more detailed implementation: - 
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Please visit my blog for further examples and more detailed implementation: - 
