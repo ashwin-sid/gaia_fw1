@@ -42,3 +42,5 @@ Author Information
 ------------------
 
 Please visit my blog for further examples and more detailed implementation: - 
+
+"http://ash-sidhu.blog/2018/11/07/using-ansible-for-automating-tasks-on-checkpoin t-firewall"
