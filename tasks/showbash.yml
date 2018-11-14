@@ -24,8 +24,8 @@
 - name: create dir
   local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
-- name : de2 
-  debug: var=r0
+#- name : de2 
+#  debug: var=r0
 #  debug: var=hostvars['localhost']
 
 - name: write backup
