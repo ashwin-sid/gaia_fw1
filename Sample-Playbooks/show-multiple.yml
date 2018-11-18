@@ -1,5 +1,5 @@
 ---
-#This Playbook will run commands given inthe last line 
+#This Playbook will run commands stored in   show-clish.cmd file . 
 
  - hosts: localhost
    tasks:
@@ -22,7 +22,7 @@
      - name: SHOW COMMAND
        import_role:
          name: ashwin_sid.gaia_fw1
-         tasks_from: showclish
+         tasks_from: showclish2
        vars:
 ##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
-         cmd: show asset all
+         cmdfile: show-clish.cmd

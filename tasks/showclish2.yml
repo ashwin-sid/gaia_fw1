@@ -1,0 +1,44 @@
+---
+- name: set clish
+  cli_command: command=clish
+
+- name: set pager
+  cli_command: command='set clienv rows 0'
+
+- name: Get hostname 
+  cli_command: command='show hostname'
+  register: r0
+
+- name: SHOW CONFIG
+  cli_command:
+    command: "{{ item }}"
+  with_lines: cat {{ cmdfile }}
+  register: result1
+
+#- name : de1 
+#  debug: var=result1
+
+- name: create dir
+  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
+
+#- name : de2 
+#  debug: var=r0
+#  debug: var=hostvars['localhost']
+
+- name: write outpu1
+  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.item }} create=yes
+  loop: "{{ result1.results }}"
+
+- name: write outpu2
+  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line="===================================="
+  loop: "{{ result1.results }}"
+
+- name: write outpu3
+  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.stdout_lines|join('\n') }}
+  loop: "{{ result1.results }}"
+
+
+  #local_action:  copy content={{ result1.stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+  #local_action:  copy content={{ result1['results'].stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+  #local_action:  copy content={{ result1['results'].stdout_lines|join('\n') }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+  #local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
