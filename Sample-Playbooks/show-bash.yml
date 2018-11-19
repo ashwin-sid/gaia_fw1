@@ -1,0 +1,28 @@
+---
+#This Playbook will run commands stored in   show-clish.cmd file . 
+
+ - hosts: localhost
+   tasks:
+    - command: /bin/echo "{{ lookup('pipe','date +%Y-%m-%d_%H-%M') }}"
+      register: foo
+
+    - file:
+        path: ../SHOW
+        state: directory
+
+## Change the 'hosts' variable to what you have defined in inventory file.
+## You can change 'serial' to higher than 1. 'Serial' is the batch size
+
+ - hosts: ckp
+   serial: 1
+#################### DO NOT CHANGE AYTHING BELOW THIS LINE ######################
+   gather_facts: no
+   tasks:
+
+     - name: SHOW COMMAND
+       import_role:
+         name: ashwin_sid.gaia_fw1
+         tasks_from: showbash
+       vars:
+##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
+         cmdfile: show-bash.cmd
