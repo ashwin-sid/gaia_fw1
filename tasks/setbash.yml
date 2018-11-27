@@ -1,0 +1,18 @@
+---
+## Set task file for clish
+
+- name: set clish
+  cli_command: command=clish
+
+- name: set pager
+  cli_command: command='set clienv rows 0'
+
+- name: Get hostname 
+  cli_command: command='show hostname'
+  register: r0
+
+- name: Pushing Commands
+  cli_command:
+    command: "{{ item }}"
+  with_lines: cat {{ cmdfile }}
+
