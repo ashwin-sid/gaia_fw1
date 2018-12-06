@@ -1,4 +1,10 @@
 ---
+#- name: set clish
+#  cli_command: command=clish
+#
+#- name: set pager
+#  cli_command: command='set clienv rows 0'
+#
 - name: Get hostname 
   cli_command: command='hostname'
   register: r0
@@ -8,14 +14,6 @@
     command: "{{ item }}"
   with_lines: cat {{ cmdfile }}
   register: result1
-
-- name: Get hostname 
-  cli_command: command='exit'
-#  register: r0
-
-
-#- name : de1 
-#  debug: var=result1
 
 - name: create dir
   local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
