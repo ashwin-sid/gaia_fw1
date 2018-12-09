@@ -26,4 +26,4 @@
          name: ashwin_sid.gaia_fw1
          tasks_from: setclish
        vars:
-         cmdfile: config-clish.cmd
+         cmdfile: configure-clish.cmd

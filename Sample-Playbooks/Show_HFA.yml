@@ -22,7 +22,7 @@
      - name: SHOW COMMAND
        import_role:
          name: ashwin_sid.gaia_fw1
-         tasks_from: showbash
+         tasks_from: showclish
        vars:
 ##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
          cmd: cpinfo -y all
