@@ -27,3 +27,4 @@
          tasks_from: setclish
        vars:
          cmdfile: configure-clish.cmd
+         logdir: ../SHOW

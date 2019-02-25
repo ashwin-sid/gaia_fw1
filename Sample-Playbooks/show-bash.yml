@@ -26,3 +26,5 @@
        vars:
 ##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
          cmdfile: show-bash.cmd
+         logdir: ../SHOW
+

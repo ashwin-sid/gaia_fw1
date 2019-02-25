@@ -1,9 +1,7 @@
 ---
-#- name: set clish
-#  cli_command: command=clish
-#
-#- name: set pager
-#  cli_command: command='set clienv rows 0'
+# VARIABLES:
+# cmdfile - File where the comamnds to be run on target hosts are stored, one command pre line.
+# logdir - Directory where the output of the commands will be stored. This can be specified either relative to the directory where the playbook stored ( ../SHOW) OR the full path (/opt/ansible/SHOW)
 #
 - name: Get hostname 
   cli_command: command='hostname'
@@ -16,16 +14,16 @@
   register: result1
 
 - name: create dir
-  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
+  local_action: file  path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 - name: write output1
-  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.item }} create=yes
+  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.item }} create=yes
   loop: "{{ result1.results }}"
 
 - name: write output2
-  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line="===================================="
+  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line="===================================="
   loop: "{{ result1.results }}"
 
 - name: write output3
-  local_action:  lineinfile path=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.stdout_lines|join('\n') }}
+  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.stdout_lines|join('\n') }}
   loop: "{{ result1.results }}"

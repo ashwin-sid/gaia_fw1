@@ -26,3 +26,4 @@
        vars:
 ##################### PUT YOUR SHOW (GAIA) COMMAND HERE (after 'cmd:')  ################
          cmdfile: show-clish.cmd
+         logdir: ../SHOW
