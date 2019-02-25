@@ -16,11 +16,13 @@
   register: result1
 
 - name: create dir
-  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
+#  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
+  local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 
 - name: write backup
-  local_action:  copy content={{ result1.stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+#  local_action:  copy content={{ result1.stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+  local_action:  copy content={{ result1.stdout }} dest={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
   #local_action:  copy content={{ result1['results'].stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
   #local_action:  copy content={{ result1['results'].stdout_lines|join('\n') }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
   #local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt

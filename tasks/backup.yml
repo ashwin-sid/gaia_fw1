@@ -1,4 +1,9 @@
 ---
+# VARIABLES:
+#  cmdfile - File where the comamnds to be run on target hosts are stored, one command pre line.
+#  logdir - Directory where the output of the commands will be stored. This can be specified either relative to the directory where the playbook stored ( ../SHOW) OR the full path (/opt/ansible/SHOW)
+# 
+#
 
 - name: set clish
   cli_command: command=clish
@@ -16,7 +21,8 @@
   register: result1
 
 - name: create dir
-  local_action: file  path=../BACKUP/{{ r0.stdout }} state=directory
+#  local_action: file  path=../BACKUP/{{ r0.stdout }} state=directory
+  local_action: file  path=={{ logdir | default('../BACKUP') }}/{{ r0.stdout }} state=directory
 
 - name: Store Backup
   local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest=../BACKUP/{{ r0.stdout }}/{{ hostvars['localhost']['foo'].stdout }}.txt

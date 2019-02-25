@@ -33,6 +33,9 @@ Sample Playbooks are included in folder 'Sample-playbook'. Please visit my blog 
 Please Visit - "http://ash-sidhu.blog/2018/11/07/using-ansible-for-automating-tasks-on-checkpoin t-firewall" 
 for more detailed implementation procedure.
 
+UPDATE NOTE (25/02/19) : I have added provision to add custom output directory. Variable 'logdir', you can specify where the output gets stored. The Sample-playbooks reflect this.  
+
+
 License
 -------
 

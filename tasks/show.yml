@@ -1,4 +1,8 @@
 ---
+# VARIABLES:
+#  logdir - Directory where the output of the commands will be stored. This can be specified either relative to the directory where the playbook stored ( ../SHOW) OR the full path (/opt/ansible/SHOW)
+# 
+#
 - name: set clish
   cli_command: command=clish
 
@@ -14,8 +18,8 @@
   register: result1
 
 - name: create dir
-  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
+  local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 - name: write backup
-  local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
+  local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
 
