@@ -14,16 +14,16 @@
   register: result1
 
 - name: create dir
-  local_action: file  path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
+  local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 - name: write output1
-  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.item }} create=yes
+  local_action:  lineinfile path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.item }} create=yes
   loop: "{{ result1.results }}"
 
 - name: write output2
-  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line="===================================="
+  local_action:  lineinfile path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line="===================================="
   loop: "{{ result1.results }}"
 
 - name: write output3
-  local_action:  lineinfile path={{ logdir }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.stdout_lines|join('\n') }}
+  local_action:  lineinfile path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt line={{ item.stdout_lines|join('\n') }}
   loop: "{{ result1.results }}"
