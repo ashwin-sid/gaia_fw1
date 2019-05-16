@@ -17,9 +17,9 @@
   cli_command: command='show asset all'
   register: result1
 
-- name: create dir
+- name: create local dir
   local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
-- name: write backup
+- name: Save Output
   local_action:  copy content={{ result1.stdout_lines|join('\n') }} dest={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
 
