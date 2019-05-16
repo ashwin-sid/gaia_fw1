@@ -13,7 +13,7 @@
   with_lines: cat {{ cmdfile }}
   register: result1
 
-- name: create dir
+- name: create local dir
   local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 - name: write output1
