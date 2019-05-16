@@ -15,12 +15,12 @@
 #  with_lines: cat {{ cmdfile }}
   register: result1
 
-- name: create dir
+- name: create local dir
 #  local_action: file  path=../SHOW/{{ hostvars['localhost']['foo'].stdout }} state=directory
   local_action: file  path={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }} state=directory
 
 
-- name: write backup
+- name: Save Output
 #  local_action:  copy content={{ result1.stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
   local_action:  copy content={{ result1.stdout }} dest={{ logdir | default('../SHOW') }}/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
   #local_action:  copy content={{ result1['results'].stdout }} dest=../SHOW/{{ hostvars['localhost']['foo'].stdout }}/{{ r0.stdout }}.txt
